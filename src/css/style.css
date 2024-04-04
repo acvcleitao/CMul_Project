@@ -409,13 +409,19 @@ a:focus {
 }
 
 .about_section .img_container .img-box.b1 {
-  width: 70%;
+  width: 100%;
 }
 
 .about_section .img_container .img-box.b2 {
   width: 50%;
   margin-left: auto;
   margin-top: -12%;
+}
+
+.about_section .img_container .img-box.b3 {
+  width: 100%;
+  margin-left: auto;
+  margin-top: -50%;
 }
 
 .about_section .img_container .img-box img {
