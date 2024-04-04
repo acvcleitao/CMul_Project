@@ -55,10 +55,10 @@
                   <!--TODO: Change the sections' name-->
                   <a class="nav-link" href="index.html"> Início <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item active">
+                <li class="nav-item">
                   <a class="nav-link" href="Interface.html"> Interface</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                   <a class="nav-link" href="architecture.html"> Arquitetura</a>
                 </li>
                 <li class="nav-item">
@@ -92,28 +92,33 @@
           <div class="detail-box">
             <div class="heading_container">
               <h2>
-                Aplicação e interface
+                Arquitetura
               </h2>
               <img src="images/Youtube_logo.png" alt="">
             </div>
             <p>
-              A filosofia de design do YouTube procura uma interface intuitiva e simplista que incentiva o consumo contínuo de vídeos.
+              O YouTube, como plataforma de partilha de vídeos, tem uma arquitetura feita de forma a obedecer o melhor possível as condições exigidas pelo consumidor:
             </p>
+            <ul>
+              <li>Um vídeo não deve ter qualquer tipo de buffering;</li>
+              <li>O site deve ter alta disponibilidade e baixa latência;</li>
+              <li>O armazenamento de vídeos deve ter alta confiabilidade de modo a não se perderem dados;</li>
+              <li>A arquitetura deve ser escalável.</li>
+            </ul> 
             <h2>
-              Interface
+              Design de alto nível
             </h2>
             <p>
-              No centro da página inicial os utilizadores encontram uma lista de vídeos recomendados com base nas suas preferências e histórico de 
-              navegação, assim como as contas seguidas pelo próprio (a que se dá o nome de “canais”). 
+              De um ponto de vista de design de alto nível, o YouTube deve apresentar uma interface responsiva e visualmente apelativa com navegação 
+              interativa e simplista que funcione na maioria das plataformas e formatos de ecrãs. Utilizadores devem ter a possibilidade de não só 
+              visualizar mas fazer upload de vídeos de diversas qualidades e formatos. Após upload de vídeos, estes devem ser processados com o 
+              objetivo de garantir optimização e compatibilidade. Os vídeos devem estar disponíveis globalmente para todos os utilizadores a qualquer 
+              altura e devem ser recomendados ao utilizador automaticamente com base nos seus gostos. O website deve ter uma componente social que 
+              incentive os utilizadores a comentar e partilhar vídeos. Todos os vídeos na plataforma devem ser moderados conforme as normas descritas 
+              pelo YouTube de forma a prevenir conteúdos possivelmente prejudiciais ao utilizador.
             </p>
             <p>
-              Na parte superior do site encontra-se uma barra 
-              de pesquisa para procura de conteúdos específicos. A interface apresenta ainda separadores de categorias de conteúdos, com base nos 
-              interesses do utilizador, que agem como um filtro para os vídeos mostrados ao mesmo. Cada vídeo tem um título, uma miniatura, um criador, 
-              uma data de publicação e um número de visualizações associado. Ao carregar na miniatura do vídeo ou no seu título é possível visualizá-lo 
-              tendo ainda opções para “Gostar”, “Não gostar”, “Partilhar” ou “Comentar” o vídeo e ainda subscrever o canal associado para que o mesmo 
-              apareça com maior frequência na página inicial. De forma a incentivar o consumo contínuo de vídeos, o YouTube recomenda, durante e após 
-              cada visualização, outros vídeos recomendados.
+              Com base nestes princípios e nas necessidades do utilizador nasce então a arquitetura do YouTube como plataforma de partilha de vídeos.
             </p>
           </div>
         </div>
@@ -131,13 +136,62 @@
           <div class="detail-box">
             <div class="heading_container">
             </div>
-            <h2>YouTube Shorts</h2>
+            <h2>Rede de Distribuição de Conteúdo</h2>
             <p>
-              Outra grande parte da interface do YouTube são os “Shorts”. Os Shorts foram criados como resposta ao modelo de funcionamento do TikTok; 
-              outra grande plataforma de partilha de vídeos. Ambos apresentam funcionalidades semelhantes que incentivam o consumo de vídeos curtos 
-              entre 15 e 60 segundos, procurados automaticamente com base nas preferências do utilizador. Tal como nos restantes vídeos, é possível 
-              “Gostar”, “Não gostar”, “Partilhar” ou “Comentar” o vídeo, mas no caso dos Shorts, a navegação para o próximo vídeo é feita muito 
-              rapidamente e automaticamente, não dando a opção ao utilizador de escolher o próximo vídeo.
+              O YouTube usa como ponto central da sua arquitetura, uma rede de distribuição de conteúdo (CDN) que funciona através da 
+              replicação de conteúdos em vários servidores espalhados pelo mundo (Points of Presence). Quando um conteúdo é solicitado 
+              pelo utilizador o pedido é direcionado para o servidor CDN mais próximo do cliente de modo a reduzir a latência e o tempo 
+              de carregamento. Esta implementação permite também lidar com picos de tráfego dividindo a carga entre vários servidores 
+              caso um deles esteja sobrecarregado.
+            </p>
+            <p>O YouTube guarda nestas CDNs vídeos codificados com um algoritmo escolhido conforme a popularidade dos mesmos. 
+              À medida que o número de visualizações de um vídeo aumenta, o codec usado passa de H.264 para VP9 até chegar ao AV1 
+              quando atinge alta popularidade. Apesar de AV1 ser o codec mais moderno dos 3, o tempo de codificação face aos 
+              restantes codecs mencionados é extremamente alto. Normalmente, não seria um problema para o utilizador normal mas visto 
+              que mais de 500 horas de conteúdos são submetidos na plataforma a cada minuto, este atraso aumentaria consideravelmente. 
+              Isto combinado com o facto de a maioria dos utilizadores não utilizarem qualidades acima dos 720p ou 1080p torna os restantes 
+              codecs menos utilizados.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="img_container">
+              <img src="images/YouTube-design.jpeg" alt="" />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="detail-box">
+            <div class="heading_container">
+            </div>
+            <h2>Streaming em tempo real</h2>
+            <p>
+              Para streaming de vídeos em tempo real, o YouTube  usa também vários protocolos como 
+              RTMPS, HLS e MPEG-DASH sendo que MPEG-DASH não funciona em aparelhos com IOS e é portanto, menos utilizado
+            </p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="img_container">
+              <img src="" alt="" />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="detail-box">
+            <div class="heading_container">
+            </div>
+            <h2>Da CDN para o utilizador</h2>
+            <p>
+              Ao serem solicitados, estes vídeos são enviados da CDN apropriada para o utilizador através do protocolo TCP ou, 
+              caso seja suportado pelo utilizador, através do protocolo QUIC (Quick UDP Internet Connections) desenvolvido pela 
+              Google para melhorar a velocidade de ligação diminuído o número de interações entre um cliente e um servidor. 
+              O pedido efetuado contém, para além de informações acerca do vídeo, outras informações como a velocidade de 
+              ligação do utilizador e o tipo de dispositivo de onde vem o pedido que são usadas pela CDN para decidir que formato 
+              e resolução enviar como resposta. Ao ser recebido, este vídeo é descodificado pelo utilizador para que possa ser visualizado.
+            </p>
+            <p>
+              O pedido efetuado contém, para além de informações acerca do vídeo, outras informações como a velocidade de 
+              ligação do utilizador e o tipo de dispositivo de onde vem o pedido que são usadas pela CDN para decidir que formato 
+              e resolução enviar como resposta. Ao ser recebido, este vídeo é descodificado pelo utilizador para que possa ser visualizado.
             </p>
             <a href="paper.html">
               Ler Mais
@@ -147,10 +201,7 @@
         <div class="col-md-6">
           <div class="img_container">
             <div class="img-box b1">
-              <img src="images/youtube-shorts-page.jpg" alt="" />
-            </div>
-            <div class="img-box b2">
-              <img src="images/youtube-shorts.jpg" alt="" />
+              <img src="images/Network.png" alt="" />
             </div>
           </div>
         </div>
