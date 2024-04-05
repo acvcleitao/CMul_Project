@@ -295,7 +295,18 @@ a:focus {
 
 .service_section {
   text-align: center;
+  background-color: #ffffff;
+}
+
+.video_section {
+  text-align: center;
   background-color: #f3f0f6;
+}
+
+.video_section .heading_container {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .service_section .heading_container {
@@ -450,6 +461,10 @@ a:focus {
   background-color: #5625a1;
 }
 
+.blog_section{
+  background-color: #f3f0f6;
+}
+
 .blog_section .heading_container {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
@@ -457,7 +472,7 @@ a:focus {
 }
 
 .blog_section .heading_container h2::before {
-  background-color: #ffffff;
+  background-color: #f3f0f6;
 }
 
 .blog_section .box {
@@ -470,7 +485,7 @@ a:focus {
 .blog_section .box .img-box {
   position: relative;
   align-items: center;
-  padding-top: 10px;
+  padding-top: 50px;
 }
 
 .blog_section .box .img-box img {
